@@ -23,36 +23,35 @@ public class PopulateFormTest extends BaseTest {
 
     @Test
     void populateFormWithCorrectDataTest() {
-        formPage.firstName.setValue(firstName);
-        formPage.lastName.setValue(lastName);
-        formPage.userEmail.setValue(userEmail);
-        formPage.setGenderMale();
-        formPage.userNumber.setValue(userNumber);
-        formPage.dateOfBirthInput.click();
-        formPage.calendarComponent.setDate(day, month, year);
-        formPage.subjectsInput.setValue(subjectFirst).pressEnter();
-        formPage.subjectsInput.setValue(subjectSecond).pressEnter();
-        formPage.hobbiesSportsCheckbox.click();
-        formPage.uploadPicture.uploadFromClasspath(fileName);
-        formPage.currentAddress.setValue(currentAddress);
-        formPage.setStateAndCity(state, city);
-        formPage.submit.click();
+        formPage.setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGenderMale()
+                .setUserNumber(userNumber)
+                .setDateOfBirth(day, month, year)
+                .setSubject(subjectFirst)
+                .setSubject(subjectSecond)
+                .setHobby(hobby)
+                .uploadPicture(fileName)
+                .setCurrentAddress(currentAddress)
+                .setStateAndCity(state, city)
+                .clickSubmit();
 
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(firstName + " " + lastName));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(userEmail));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(gender));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(userNumber));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(day + " " + month + "," + year));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(subjectFirst + ", " + subjectSecond));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(hobby));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(fileName));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(currentAddress));
-        formPage.tableResponsiveComponent.tableResponsive.shouldHave(text(state + " " + city));
+        formPage.tableResponsiveComponent.checkName(firstName, lastName)
+                .checkEmail(userEmail)
+                .checkGender(gender)
+                .checkUserNumber(userNumber)
+                .checkDateOfBirth(day, month, year)
+                .checkSubject(subjectFirst, subjectSecond)
+                .checkHobby(hobby)
+                .checkPicture(fileName)
+                .checkCurrentAddress(currentAddress)
+                .checkStateAndCity(state, city);
     }
 
     @Test
     void setFormWithOutProvidedDataTest() {
-        formPage.submit.click();
+        formPage.clickSubmit();
 
         formPage.tableResponsiveComponent.tableResponsive.shouldNotBe(visible);
         formPage.checkFieldsRequirements();
@@ -60,11 +59,11 @@ public class PopulateFormTest extends BaseTest {
 
     @Test
     void setIncorrectDataTest() {
-        formPage.firstName.setValue(firstName);
-        formPage.lastName.setValue(lastName);
-        formPage.setGenderMale();
-        formPage.userNumber.setValue(incorrectUserNumber);
-        formPage.submit.click();
+        formPage.setFirstName(firstName)
+                .setLastName(lastName)
+                .setGenderMale()
+                .setUserNumber(incorrectUserNumber)
+                .clickSubmit();
 
         formPage.tableResponsiveComponent.tableResponsive.shouldNotBe(visible);
     }

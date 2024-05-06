@@ -55,30 +55,34 @@ public class FormPage {
      * @param state String of state
      * @param city  String of city
      */
-    public void setStateAndCity(String state, String city) {
+    public FormPage setStateAndCity(String state, String city) {
         statePickList.setValue(state).pressEnter();
         cityPickList.setValue(city).pressEnter();
+        return this;
     }
 
     /**
      * Click on label Male for selecting checkbox Male
      */
-    public void setGenderMale() {
-        genderMaleRadioButton.sibling(0).click();
+    public FormPage setGenderMale() {
+        this.genderMaleRadioButton.sibling(0).click();
+        return this;
     }
 
     /**
      * Click on label Female for selecting checkbox Female
      */
-    public void setGenderFemale() {
-        genderFemaleRadioButton.sibling(0).click();
+    public FormPage setGenderFemale() {
+        this.genderFemaleRadioButton.sibling(0).click();
+        return this;
     }
 
     /**
      * Click on label Other for selecting checkbox Other
      */
-    public void setGenderOther() {
-        genderOtherRadioButton.sibling(0).click();
+    public FormPage setGenderOther() {
+        this.genderOtherRadioButton.sibling(0).click();
+        return this;
     }
 
     /**
@@ -103,5 +107,59 @@ public class FormPage {
         currentAddress.shouldNotHave(attribute("required"));
         statePickList.shouldNotHave(attribute("required"));
         cityPickList.shouldNotHave(attribute("required"));
+    }
+
+    public FormPage setFirstName(String firstName) {
+        this.firstName.setValue(firstName);
+        return this;
+    }
+
+    public FormPage setLastName(String lastName) {
+        this.lastName.setValue(lastName);
+        return this;
+    }
+
+    public FormPage setUserEmail(String userEmail) {
+        this.userEmail.setValue(userEmail);
+        return this;
+    }
+
+    public FormPage setUserNumber(String userNumber) {
+        this.userNumber.setValue(userNumber);
+        return this;
+    }
+
+    public FormPage setDateOfBirth(String day, String month, String year) {
+        this.dateOfBirthInput.click();
+        calendarComponent.setDate(day, month, year);
+        return this;
+    }
+
+    public FormPage setSubject(String subject) {
+        this.subjectsInput.setValue(subject).pressEnter();
+        return this;
+    }
+
+    public FormPage setHobby(String hobby) {
+        switch (hobby) {
+            case "Sports" -> this.hobbiesSportsCheckbox.click();
+            case "Reading" -> this.hobbiesReadingCheckbox.click();
+            case "Music" -> this.hobbiesMusicCheckbox.click();
+        }
+        return this;
+    }
+
+    public FormPage uploadPicture(String fileName) {
+        this.uploadPicture.uploadFromClasspath(fileName);
+        return this;
+    }
+
+    public FormPage setCurrentAddress(String currentAddress) {
+        this.currentAddress.setValue(currentAddress);
+        return this;
+    }
+
+    public void clickSubmit() {
+        this.submit.click();
     }
 }
