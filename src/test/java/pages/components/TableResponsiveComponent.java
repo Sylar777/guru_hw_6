@@ -33,8 +33,8 @@ public class TableResponsiveComponent {
         return this;
     }
 
-    public TableResponsiveComponent checkSubject(String subjectFirst, String subjectSecond) {
-        tableResponsive.shouldHave(text(subjectFirst + ", " + subjectSecond));
+    public TableResponsiveComponent checkSubject(String subjectFirst) {
+        tableResponsive.shouldHave(text(subjectFirst));
         return this;
     }
 
