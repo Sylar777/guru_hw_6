@@ -10,7 +10,7 @@ public class PopulateFormTest extends BaseTest {
         formPage.setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setUserEmail(testData.userEmail)
-                .setGenderMale()
+                .setGender(testData.gender)
                 .setUserNumber(testData.userNumber)
                 .setDateOfBirth(testData.userBirthDay, testData.userBirthMonth, testData.userBirthYear)
                 .setSubject(testData.subject)
@@ -44,7 +44,7 @@ public class PopulateFormTest extends BaseTest {
     void setIncorrectDataTest() {
         formPage.setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
-                .setGenderMale()
+                .setGender(testData.gender)
                 .setUserNumber(testData.incorrectUserNumber)
                 .clickSubmit();
 

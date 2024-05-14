@@ -64,24 +64,8 @@ public class FormPage {
     /**
      * Click on label Male for selecting checkbox Male
      */
-    public FormPage setGenderMale() {
-        this.genderMaleRadioButton.sibling(0).click();
-        return this;
-    }
-
-    /**
-     * Click on label Female for selecting checkbox Female
-     */
-    public FormPage setGenderFemale() {
-        this.genderFemaleRadioButton.sibling(0).click();
-        return this;
-    }
-
-    /**
-     * Click on label Other for selecting checkbox Other
-     */
-    public FormPage setGenderOther() {
-        this.genderOtherRadioButton.sibling(0).click();
+    public FormPage setGender(String value) {
+        $("#genterWrapper input[value='" + value + "']").sibling(0).click();
         return this;
     }
 
